@@ -70,8 +70,11 @@ def create_thumbnail_grid(video_path,
         x = col * (width + padding) + padding
         y = row * (height + padding) + padding + info_bar_height
 
-        frame = create_rounded_rectangle(
-            frame.convert("RGBA"), radius=corner_radius)
+        # 如果用户设置了圆角的大小，则需要对图片进行圆角处理
+        if corner_radius > 0:
+            frame = create_rounded_rectangle(
+                frame.convert("RGBA"), radius=corner_radius)
+
         grid_image.paste(frame, (x, y), frame)
 
     # 添加视频信息区域
@@ -92,15 +95,18 @@ def create_thumbnail_grid(video_path,
     draw.text((text_x, text_y), video_info, fill=(0, 0, 0), font=font)
 
     # 考虑到拼接完成后到图像可能过大，需要进行等比例缩放，所以这里将计算缩放的比例
-    scale_factor = final_width / grid_width
-    new_grid_width = final_width
-    new_grid_height = int(grid_height * scale_factor)
+    if final_width > 0:
+        scale_factor = final_width / grid_width
+        new_grid_width = final_width
+        new_grid_height = int(grid_height * scale_factor)
 
-    # 调整图像的最终大小
-    grid_image = grid_image.resize(
-        (new_grid_width, new_grid_height))
-    grid_image = grid_image.convert("RGB")
-    grid_image.save(output_image_path)
+        # 调整图像的最终大小
+        grid_image = grid_image.resize((new_grid_width, new_grid_height))
+        grid_image = grid_image.convert("RGB")
+        grid_image.save(output_image_path)
+    else:
+        # 如果用户将最终的宽度设置为 0 ，则表示不需要对图像大小进行调整，直接保存即可
+        grid_image.save(output_image_path)
 
     # 释放资源
     cap.release()
@@ -111,8 +117,8 @@ video_path = 'xxx.mp4'  # 视频文件路径
 output_image_path = '预览.jpg'  # 最终生成的图片的名称及保存路径
 grid_size = (4, 4)  # 图片的数量，例如此处是 4 行 4 列，总计 16 张图
 padding = 30  # 图片的间距，位于边缘的图片同样需要与边缘保持这个距离
-corner_radius = 30  # 圆角半径
-final_width = 1600  # 拼接完成后的图片的最终宽度
+corner_radius = 30  # 圆角半径，设置为 0 则不应用圆角效果
+final_width = 1920  # 拼接完成后的图片的最终宽度，设置为 0 则不调整大小
 
 # 调用函数并传入参数开始工作！
 create_thumbnail_grid(video_path,
