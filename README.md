@@ -1,9 +1,8 @@
-<h1 align = "center">
-Video Thumbnail Grid Maker<br />
-视频网格缩略图生成器
-</h1>
+<h1 align = "center">视频网格缩略图生成器</h1>
 
-<p align = "center"><a href = "README.md" target = "_blank">CN</a> | <a href = "README_EN.md" target = "_blank">EN</a></p>
+<p align = "center">
+    <a href = "README.md" target = "_blank">CN</a> | <a href = "README_EN.md" target = "_blank">EN</a>
+</p>
 
 ## 废话
 
@@ -18,9 +17,11 @@ Video Thumbnail Grid Maker<br />
 ## 特性
 
 - [x] 自定义图片的数量，例如 3×3 或者 4×4 。
-- [x] 自定义最终图片的宽度（高度按比例调整），设置为`0`则保持原大小；
+- [x] 自定义最终图片的宽度（高度将自动按比例调整），设置为`0`则保持原大小；
 - [x] 自定义图片之间的距离；
-- [x] 自定义图片的圆角，设置为`0`则不启用圆角；
+- [x] 自定义图片的圆角，设置为`0`则不应用圆角风格；
+- [x] 网格中的每张截图都会标注其在视频中对应的时间；
+- [x] 支持`mp4`、`mkv`等常见视频格式。
 
 ## 使用
 
@@ -33,21 +34,21 @@ pip3 install opencv-python pillow
 在执行代码前还需要进行参数设置：
 
 ```python
-video_path = 'xxx.mp4'  # 视频文件路径
-output_image_path = '预览.jpg'  # 最终生成的图片的名称及保存路径
+video_path = 'your_video_path.mp4'  # 视频文件路径
+output_image_path = 'thumbnail_grid.jpg'  # 最终图片的名称及输出路径
 grid_size = (4, 4)  # 图片的数量，例如此处是 4 行 4 列，总计 16 张图
 padding = 30  # 图片的间距，位于边缘的图片同样需要与边缘保持这个距离
 corner_radius = 30  # 圆角半径，设置为 0 则不应用圆角效果
-final_width = 1600  # 拼接完成后的图片的最终宽度，设置为 0 则不调整大小
+final_width = 1920  # 最终图片的最终宽度，设置为 0 则不调整大小
 ```
 
 事实上，只有`video_path`是必须要修改的。
 
 ## 效果预览
 
-| ![](preview.jpg) |
+| ![](demo.jpg) |
 |:----------------:|
-| 截图来自《斗破苍穹》 |  
+| 截图来自《我的女友是妖怪》 |  
 
 ## 后续计划
 
@@ -55,4 +56,4 @@ final_width = 1600  # 拼接完成后的图片的最终宽度，设置为 0 则�
 
 - [ ] 添加图形化界面；
 - [ ] 打包为可执行文件，分发至多个平台；
-- [ ] 为每张图片标注其所在时间；
+- [ ] 带字幕截图；
