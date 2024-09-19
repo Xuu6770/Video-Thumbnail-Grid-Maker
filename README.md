@@ -1,59 +1,50 @@
-<h1 align = "center">视频网格缩略图生成器</h1>
+<h1 align = "center">Video Thumbnail Grid Maker</h1>
 
 <p align = "center">
-    <a href = "README.md" target = "_blank">CN</a> | <a href = "README_EN.md" target = "_blank">EN</a>
+    <a href = "README.md" target = "_blank">EN</a> | <a href = "README_CN.md" target = "_blank">CN</a>
 </p>
 
-## 废话
+## Features
 
-在很长一段时间里，我都在寻找具有给视频创建网格缩略图功能的免费播放器。在 Windows 上，PotPlayer 内置了这个功能，并且做得非常好。但是在 macOS 上，很遗憾，像 VLC 和 IINA 这两个非常出色的 app 都没有这个功能。因此我还一度有了自己开发一款播放器的念头，无奈我既不会 Swift ，也不掌握音视频开发的技能（C++、FFmpeg）。
+- [x] Customize the number of screenshots, for example 3×3 or 4×4;
+- [x] Customize the width of the final picture (the height will be scaled automatically), set to `0` to keep the original size;
+- [x] Customize the distance between the screenshots;
+- [x] Customize the rounded corners of the screenshot, set to `0` to not apply the rounded corner style;
+- [x] Each screenshot in the grid is labeled with its corresponding time in the video;
+- [x] Support `mp4`, `mkv` and other common video formats;
+- [x] A simple but sufficiently usable GUI;
 
-直到昨天晚上我的脑子被门夹了，我才突然意识到：
+## Use
 
-> 其实我根本不需要特地去开发一个视频播放器，如果我只是需要从视频中截几张图然后拼接在一起的话，那我就单独开发这个功能不就行了吗……视频的播放并不是必须的。
-
-于是便有了这个低技术力屑作（恼
-
-## 特性
-
-- [x] 自定义图片的数量，例如 3×3 或者 4×4 。
-- [x] 自定义最终图片的宽度（高度将自动按比例调整），设置为`0`则保持原大小；
-- [x] 自定义图片之间的距离；
-- [x] 自定义图片的圆角，设置为`0`则不应用圆角风格；
-- [x] 网格中的每张截图都会标注其在视频中对应的时间；
-- [x] 支持`mp4`、`mkv`等常见视频格式。
-
-## 使用
-
-先安装依赖：
+Install the dependencies first:
 
 ```shell
 pip3 install opencv-python pillow
 ```
 
-在执行代码前还需要进行参数设置：
+Open the project, run `__main__.py`, and adjust the parameters on the interface according to your needs (bold text is mandatory setting items):
 
-```python
-video_path = 'your_video_path.mp4'  # 视频文件路径
-output_image_path = 'thumbnail_grid.jpg'  # 最终图片的名称及输出路径
-grid_size = (4, 4)  # 图片的数量，例如此处是 4 行 4 列，总计 16 张图
-padding = 30  # 图片的间距，位于边缘的图片同样需要与边缘保持这个距离
-corner_radius = 30  # 圆角半径，设置为 0 则不应用圆角效果
-final_width = 1920  # 最终图片的最终宽度，设置为 0 则不调整大小
-```
+1. **Click the button to select the video file to read its file path;**
+2. the number of screenshot rows, default is 4;
+3. the number of screenshot columns, default is 4;
+4. final picture width, default is 1920 pixels, if you adjust the width manually, the height will be adjusted automatically according to the proportion.
+5. save path, default to `__main__.py` directory. You can modify the path by yourself. Note that the path needs to include the file name;
+6. distance between screenshots, default is 30;
+7. the rounded corners of the screenshots, default is 30;
 
-事实上，只有`video_path`是必须要修改的。
+## Demo
 
-## 效果预览
-
-| ![](demo.jpg) |
+| Program Interface |
 |:----------------:|
-| 截图来自《我的女友是妖怪》 |  
+| ![](GUI.png) |  
 
-## 后续计划
+| Output Image Effect |
+|:----------------:|
+| ![](demo.jpg) |
+| Screenshot from 《My Undead Yokai Girlfriend》 | 
 
-按优先级排序：
+## Todo
 
-- [ ] 添加图形化界面；
-- [ ] 打包为可执行文件，分发至多个平台；
-- [ ] 带字幕截图；
+- [ ] Compile to executable so it can run directly on Windows and macOS;
+- [ ] Add multi-language support to the GUI;
+- [ ] If the video has embedded subtitles, screenshots can be taken with or without subtitles;
