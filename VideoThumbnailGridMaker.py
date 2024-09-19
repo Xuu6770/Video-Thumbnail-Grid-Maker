@@ -96,7 +96,7 @@ def create_thumbnail_grid(video_path,
     grid_height = height * grid_size[0] + \
         padding * (grid_size[0] + 1) + info_bar_height
     # 创建一张背景板
-    grid_image = Image.new('RGBA', (grid_width, grid_height), bg_color)
+    grid_image = Image.new("RGBA", (grid_width, grid_height), bg_color)
 
     # 将每一帧放置到背景板中适当的位置
     for idx, frame in enumerate(frames):
@@ -154,20 +154,3 @@ def create_thumbnail_grid(video_path,
 
     # 释放资源
     cap.release()
-
-
-# 示例用法
-video_path = 'your_video_path.mp4'  # 视频文件路径
-output_image_path = 'demo.jpg'  # 最终图片的名称及输出路径
-grid_size = (4, 4)  # 图片的数量，例如此处是 4 行 4 列，总计 16 张图
-padding = 30  # 图片的间距，位于边缘的图片同样需要与边缘保持这个距离
-corner_radius = 30  # 圆角半径，设置为 0 则不应用圆角效果
-final_width = 1920  # 最终图片的最终宽度，设置为 0 则不调整大小
-
-# 调用函数并传入参数开始工作！
-create_thumbnail_grid(video_path,
-                      output_image_path,
-                      grid_size,
-                      padding,
-                      corner_radius,
-                      final_width)
