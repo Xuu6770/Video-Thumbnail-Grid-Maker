@@ -82,7 +82,7 @@ def main():
     final_width_entry.insert(0, "1920")
     final_width_entry.grid(row=3, column=1, padx=5, pady=4)
 
-    label4 = tk.Label(root, text="保存路径")
+    label4 = tk.Label(root, text="保存路径：")
     label4.grid(row=4, column=0, padx=5, pady=4)
 
     output_path_entry = tk.Entry(root)

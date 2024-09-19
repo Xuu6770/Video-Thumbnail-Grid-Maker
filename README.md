@@ -18,9 +18,9 @@
 
 Install the dependencies first:
 
-``shell
+```shell
 pip3 install opencv-python pillow
-``
+```
 
 Open the project, run `__main__.py`, and adjust the parameters on the interface according to your needs (bold text is mandatory setting items):
 
@@ -41,7 +41,6 @@ Open the project, run `__main__.py`, and adjust the parameters on the interface 
 | Output Image Effect |
 |:----------------:|
 | ![](demo.jpg) |
-|:----------------:|
 | Screenshot from 《My Undead Yokai Girlfriend》 | 
 
 ## Todo
