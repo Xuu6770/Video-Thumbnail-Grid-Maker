@@ -1,3 +1,4 @@
+import os
 import tkinter as tk
 from tkinter import filedialog
 from tkinter import messagebox
@@ -18,6 +19,12 @@ def main():
             file_path_entry.insert(0, file_path)  # 插入文件路径
             file_path_entry.config(state="readonly")  # 恢复文本框的只读属性
             file_path_entry.xview(len(file_path))  # 定位到文本的末端
+
+            # 设置图片的输出目录和文件名，默认输出在影片文件的目录下
+            output_path_entry.delete(0, tk.END)  # 清除当前内容
+            output_path = os.path.join(os.path.dirname(file_path), "预览.jpg")
+            output_path_entry.insert(0, output_path)
+            output_path_entry.xview(len(file_path))  # 定位到文本的末端
 
     def start_make_thumbnail():
 
@@ -56,7 +63,6 @@ def main():
 
     # 创建编辑框
     file_path_entry = tk.Entry(root)
-    file_path_entry.insert(0, "← 点击按钮选择影片读取路径")
     file_path_entry.config(state="readonly")  # 编辑框只读
     file_path_entry.grid(row=0, column=1, padx=5, pady=4)
 
@@ -86,7 +92,6 @@ def main():
     label4.grid(row=4, column=0, padx=5, pady=4)
 
     output_path_entry = tk.Entry(root)
-    output_path_entry.insert(0, "demo.jpg")
     output_path_entry.grid(row=4, column=1, padx=5, pady=4)
 
     label5 = tk.Label(root, text="截图之间的距离：")
