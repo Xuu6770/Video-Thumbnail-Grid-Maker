@@ -130,7 +130,7 @@ def create_thumbnail_grid(video_path,
     # 获取视频的分辨率和帧率信息
     video_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     video_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-    video_resolution = f"{video_width}x{video_height}"
+    video_resolution = f"{video_width} X {video_height}"
     video_fps = f"{cap.get(cv2.CAP_PROP_FPS):.2f} FPS"
     video_info = f"{video_resolution} | {video_fps}"
     # 设置分辨率和帧率信息文本的展示位置
