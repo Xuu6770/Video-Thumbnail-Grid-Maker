@@ -14,37 +14,53 @@
 - [x] Support `mp4`, `mkv` and other common video formats;
 - [x] A simple but sufficiently usable GUI;
 
-## Use
+## Development
 
-Install the dependencies first:
+Development and compilation environment:
+
+- Python 3.13.1
+- PyCharm 2024.3.1.1 (Community Edition)
+- Xcode
+- Flutter + Ruby + CocoaPods
+
+Dependency Library:
 
 ```shell
-pip3 install opencv-python pillow
+pip3 install opencv-python pillow flet
 ```
 
-Open the project, run `__main__.py`, and adjust the parameters on the interface according to your needs (bold text is mandatory setting items):
+Project structure:
 
-1. **Click the button to select the video file to read its file path;**
-2. the number of screenshot rows, default is 4;
-3. the number of screenshot columns, default is 4;
-4. final picture width, default is 1920 pixels, if you adjust the width manually, the height will be adjusted automatically according to the proportion.
-5. save path, default to `__main__.py` directory. You can modify the path by yourself. Note that the path needs to include the file name;
-6. distance between screenshots, default is 30;
-7. the rounded corners of the screenshots, default is 30;
+- `src/main.py`: GUI layout and interaction logic;
+- `src/video_thumbnail_grid_maker.py`: core logic for building thumbnails;
+
+## Use
+
+Run `src/main.py` in the project and adjust the parameters as required in the GUI:
+
+1. **Click on the button to select the video file in order to read its path, I think you understand that this is a mandatory operation;**
+2. The save path for the final generated grid thumbnail is, by default, saved to the directory where the video is located. You can also select the location you wish to save to by clicking the button. **Note: The path should contain a filename at the end**;
+3. The number of rows in the final generated grid thumbnail, default is 4;
+4. The number of columns in the final generated grid thumbnail, default is 4;
+5. The width of the final generated grid thumbnail, by default, is 1920 pixels, you can manually adjust the width, and the height will be automatically adjusted proportionally;
+6. The distance between screenshots is 30 by default;
+7. How rounded the corners of the screenshot are, the default is 30;
+
+Finally, click Floating Action Button in the lower right corner to generate the image!
 
 ## Demo
 
-| Program Interface |
-|:----------------:|
-| ![](GUI.png) |  
+| Demo of the app GUI (macOS) |
+|:---------------------------:|
+|      ![](UI_demo.png)       |  
 
-| Output Image Effect |
-|:----------------:|
-| ![](demo.jpg) |
+|  Demo of the final generated grid thumbnail  |
+|:--------------------------------------------:|
+|             ![](output_demo.jpg)             |
 | Screenshot from 《My Undead Yokai Girlfriend》 | 
 
 ## Todo
 
-- [ ] Compile to executable so it can run directly on Windows and macOS;
+- [ ] Package it as an executable so that it can run directly on Windows and macOS. The GUI implementation has been replaced by Flet instead of tkinter, but since the latest version of Flet is incompatible with the latest version of Flutter, and since the old version of Flutter has files that need to be translated by Rosetta, and since I don't want to install Rosetta on my Mac, I'm waiting for Flet to be adapted;
 - [ ] Add multi-language support to the GUI;
 - [ ] If the video has embedded subtitles, screenshots can be taken with or without subtitles;
