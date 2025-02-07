@@ -1,6 +1,5 @@
 import flet as ft
-
-from src import video_thumbnail_grid_maker as maker
+import video_thumbnail_grid_maker as maker
 
 
 def main(page: ft.Page):
